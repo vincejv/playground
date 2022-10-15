@@ -6,9 +6,6 @@ COPY --chown=quarkus:quarkus .git /code/.git
 COPY --chown=quarkus:quarkus mvnw /code/mvnw
 COPY --chown=quarkus:quarkus .mvn /code/.mvn
 COPY --chown=quarkus:quarkus pom.xml /code/
-# Copy the modules
-COPY --chown=quarkus:quarkus fpi-sms-api-core /code/fpi-sms-api-core
-COPY --chown=quarkus:quarkus fpi-sms-api-lib /code/fpi-sms-api-lib
 USER quarkus
 WORKDIR /code
 RUN chmod +x ./mvnw
