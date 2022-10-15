@@ -39,9 +39,10 @@ jobs:
           cache: maven
 
       - name: Generate native image
-        run: mvn -B package -Pnative
+        run: mvn -B package -Pnative -Dquarkus.native.container-build=true
 
       - name: Google Auth
+        id: gcp-auth
         uses: 'google-github-actions/auth@v0'
         with:
           token_format: 'access_token'
