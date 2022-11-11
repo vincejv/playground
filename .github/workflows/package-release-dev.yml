@@ -11,6 +11,7 @@ env:
   GHUB_REPO_NAME: fpi-sms-api
   SERVICE: fpi-sms-api-dev
   REGION: asia-east1
+  NATIVE_IMAGE_BUILDER: quay.io/quarkus/ubi-quarkus-mandrel:22.3-java17
 
 jobs:
 
@@ -27,7 +28,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # for jgitver to generate the version
-      
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -39,7 +40,7 @@ jobs:
           cache: maven
 
       - name: Generate native image
-        run: mvn -B package -Pnative -Dquarkus.native.container-build=true
+        run: mvn -B package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=${{ env.NATIVE_IMAGE_BUILDER }}
 
       - name: Google Auth
         id: gcp-auth
