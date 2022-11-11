@@ -15,8 +15,7 @@
     <quarkus.platform.version>2.14.0.Final</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-    <json-jackson-databind.version>2.14.0</json-jackson-databind.version>
-    <json-jackson-datatype-jsr310.version>2.14.0</json-jackson-datatype-jsr310.version>
+    <jackson-bom.version>2.14.0</jackson-bom.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -55,12 +54,10 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>${json-jackson-databind.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
-      <version>${json-jackson-datatype-jsr310.version}</version>
     </dependency>
   </dependencies>
   <build>
