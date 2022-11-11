@@ -57,8 +57,6 @@
       <artifactId>jackson-databind</artifactId>
       <version>${json-jackson-databind.version}</version>
     </dependency>
-
-
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
