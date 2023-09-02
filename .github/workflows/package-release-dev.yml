@@ -18,7 +18,6 @@ jobs:
   deploy_to_cloud:
     name: Compile for Windows
     runs-on: windows-latest
-    needs: code_quality_checks
     permissions:
       contents: read
     environment: Development
