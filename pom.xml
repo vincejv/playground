@@ -76,6 +76,12 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-keycloak-authorization</artifactId>
     </dependency>
+
+    <!-- Liquibase MongoDB -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-liquibase-mongodb</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
