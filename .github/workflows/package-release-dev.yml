@@ -16,21 +16,20 @@ env:
 jobs:
 
   deploy_to_cloud:
-    name: Deploy to Google Cloud Run development environment
-    runs-on: ubuntu-latest
+    name: Compile for Windows
+    runs-on: windows-latest
+    needs: code_quality_checks
     permissions:
       contents: read
-      packages: write
-      id-token: write
-    environment: Production
+    environment: Development
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # for jgitver to generate the version
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      #      - name: Set up Docker Buildx
+      #        uses: docker/setup-buildx-action@v2
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -39,8 +38,18 @@ jobs:
           java-version: 17
           cache: maven
 
-      - name: Generate native image
-        run: mvn -B package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=${{ env.NATIVE_IMAGE_BUILDER }}
+      - name: Set up GraalVM
+        uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '17' # for a specific JDK 17; or '17' for the latest JDK 17
+          distribution: 'graalvm' # New 'distribution' option
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cache: maven
+
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Build windows native image
+        run: |
+          mvn -B package -Pnative
 
 #      - name: Google Auth
 #        id: gcp-auth
